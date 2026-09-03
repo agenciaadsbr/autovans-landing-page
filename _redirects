@@ -1,0 +1,20 @@
+# Redirecionamentos do site legado (Locaweb/IIS -> Netlify)
+# Site antigo usava extensoes .asp (ASP classico)
+# Substitua pelo dominio final se for diferente
+
+# Redireciona paginas .asp antigas para a home nova
+/index.asp         https://autovanstransportes.com.br/                       301
+/index.asp*        https://autovanstransportes.com.br/                       301
+/default.asp       https://autovanstransportes.com.br/                       301
+/default.asp*      https://autovanstransportes.com.br/                       301
+/contato.asp       https://autovanstransportes.com.br/#contato              301
+/contato.asp*      https://autovanstransportes.com.br/#contato              301
+/servicos.asp      https://autovanstransportes.com.br/#servicos             301
+/servicos.asp*     https://autovanstransportes.com.br/#servicos             301
+/frota.asp         https://autovanstransportes.com.br/#frota                301
+/frota.asp*        https://autovanstransportes.com.br/#frota                301
+/admin             https://autovanstransportes.com.br/                       301
+/admin/*           https://autovanstransportes.com.br/                       301
+
+# Força HTTPS e remove www (opcional)
+# https://www.autovanstransportes.com.br/* https://autovanstransportes.com.br/:splat 301!
