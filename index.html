@@ -1677,6 +1677,20 @@
             .form-group-hero select { font-size: 0.9rem; padding: 0.85rem 0.9rem; }
         }
     </style>
+
+    <!-- Esconde o badge "Powered by Netlify" (free tier) -->
+    <style>
+        [class*="netlify-badge"],
+        [id*="netlify-badge"],
+        [class*="netlify-credit"],
+        a[href*="netlify.com"][class*="credit"],
+        iframe[src*="netlify"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+    </style>
 </head>
 <body>
     <!-- NAVBAR -->
