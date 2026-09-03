@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoVans | Transporte Executivo em Belo Horizonte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #2d2d3d;
+            --accent: #b8001f;
+            --accent-dark: #8a0017;
+            --accent-light: #d40029;
+            --silver: #c0c0c0;
+            --silver-light: #e8e8e8;
+            --silver-dark: #8a8a8a;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --whatsapp: #25D366;
+            --whatsapp-light: #4ade80;
+            --whatsapp-dark: #128c5e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: var(--white) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .nav-cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .nav-cta:hover::before { transform: translateX(100%); }
+        .nav-cta:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .nav-cta > * { position: relative; z-index: 2; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(26, 26, 46, 0.82) 0%, rgba(45, 45, 61, 0.78) 100%),
+                url('https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(184, 0, 31, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(37, 211, 102, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        .hero-text h1 span {
+            color: var(--white);
+        }
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--gray-300);
+            margin-bottom: 2rem;
+            max-width: 520px;
+            line-height: 1.6;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 0.55rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(8px);
+        }
+        .hero-eyebrow svg {
+            width: 16px;
+            height: 16px;
+            color: var(--whatsapp);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 0;
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            flex: 1;
+            min-width: 110px;
+            padding: 0 1.5rem;
+            text-align: left;
+        }
+        .hero-stat:first-child { padding-left: 0; }
+        .hero-stat:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .hero-stat-num {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .badge {
+            display: none;
+        }
+        .hero-badges {
+            display: none;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .btn-primary:hover::before { transform: translateX(100%); }
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary > * { position: relative; z-index: 2; }
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .btn-secondary::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .btn-secondary:hover::before { transform: translateX(100%); }
+        .btn-secondary:active { transform: scale(0.97); }
+        .btn-secondary > * { position: relative; z-index: 2; }
+
+        /* Outline green button (matches .btn-green from feature cards) */
+        .btn-outline-green {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--whatsapp);
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-outline-green:hover {
+            background: var(--whatsapp);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* QUICK FORM (Hero) */
+        .hero-form-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-form {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            color: var(--white);
+        }
+        .hero-form h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .hero-form .form-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-300);
+            margin-bottom: 1.5rem;
+        }
+        .form-group-hero {
+            margin-bottom: 0.9rem;
+        }
+        .form-group-hero label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-300);
+            margin-bottom: 0.4rem;
+        }
+        .form-group-hero input,
+        .form-group-hero select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .form-group-hero input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .form-group-hero input:focus,
+        .form-group-hero select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .form-group-hero select option {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .form-submit-hero {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+        .form-submit-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .form-submit-hero:hover::before { transform: translateX(100%); }
+        .form-submit-hero:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(37, 211, 102, 0.55);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .form-submit-hero:active { transform: scale(0.97); }
+        .form-submit-hero > * { position: relative; z-index: 2; }
+
+        /* FEATURE CAROUSEL SECTION */
+        .carousel-section {
+            padding: 5rem 2rem;
+            background: var(--gray-100);
+        }
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .carousel-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .feature-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+            display: flex;
+            flex-direction: row;
+            min-height: 580px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+        .carousel-features-panel {
+            width: 40%;
+            position: relative;
+            background: var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 2rem;
+            overflow: hidden;
+        }
+        .carousel-fade-top,
+        .carousel-fade-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 60px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .carousel-fade-top {
+            top: 0;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+        .carousel-fade-bottom {
+            bottom: 0;
+            background: linear-gradient(to top, var(--accent), transparent);
+        }
+        .carousel-features-title {
+            color: var(--white);
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 15;
+        }
+        .carousel-features-title h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .carousel-features-title p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .features-list {
+            position: relative;
+            height: 320px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .feature-chip {
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+        .feature-chip.active {
+            background: var(--white);
+            color: var(--accent);
+            border-color: var(--white);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+        }
+        .feature-chip.inactive {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .feature-chip.inactive:hover {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .feature-chip-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        .carousel-cards-panel {
+            flex: 1;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cards-stack {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4/5;
+        }
+        .feature-card {
+            position: absolute;
+            inset: 0;
+            border-radius: 2rem;
+            overflow: hidden;
+            background: var(--white);
+            border: 6px solid var(--white);
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .feature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.7s ease;
+        }
+        .feature-card.dim img {
+            filter: grayscale(100%) blur(2px) brightness(75%);
+        }
+        .feature-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+        }
+        .feature-card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 0.75rem;
+        }
+        .feature-card-desc {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.3;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .feature-card-corner {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .feature-card.active .feature-card-corner {
+            opacity: 1;
+        }
+        .corner-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--white);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--white);
+        }
+        .corner-text {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: monospace;
+        }
+
+        /* TRUST BAR */
+        .trust-bar {
+            background: var(--white);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+        .trust-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+        }
+        .trust-header .section-tag {
+            display: inline-block;
+            background: rgba(184, 0, 31, 0.08);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .trust-header h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+        .trust-carousel-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .trust-carousel-viewport {
+            overflow: hidden;
+            position: relative;
+        }
+        .trust-carousel-track {
+            display: flex;
+            gap: 3rem;
+            width: max-content;
+            animation: trust-scroll 28s linear infinite;
+        }
+        .trust-carousel-wrapper:hover .trust-carousel-track {
+            animation-play-state: paused;
+        }
+        @keyframes trust-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .trust-item {
+            flex: 0 0 auto;
+            min-width: 280px;
+            padding: 1.25rem 1.75rem;
+            background: var(--gray-100);
+            border-radius: 14px;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .trust-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(184, 0, 31, 0.1);
+        }
+        .trust-text h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.35rem;
+        }
+        .trust-text p {
+            font-size: 0.88rem;
+            color: var(--gray-600);
+            line-height: 1.45;
+        }
+        .trust-carousel-fade {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .trust-carousel-fade-left {
+            left: 0;
+            background: linear-gradient(to right, var(--white), transparent);
+        }
+        .trust-carousel-fade-right {
+            right: 0;
+            background: linear-gradient(to left, var(--white), transparent);
+        }
+        .trust-text p { font-size: 0.85rem; color: var(--gray-600); }
+
+        /* SERVICES */
+        .services { padding: 6rem 2rem; background: var(--gray-100); }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--silver));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--gray-200);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+
+        /* ANIMATED FEATURE CARDS (serviços detalhados) */
+        .animated-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .animated-feature-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 380px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            padding: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .animated-feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .animated-feature-card .card-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
+        }
+        .animated-feature-card:hover .card-bg { opacity: 0.7; }
+        .animated-feature-card .card-bg.red {
+            background: radial-gradient(circle at 50% 30%, rgba(184, 0, 31, 0.18) 0%, transparent 70%);
+        }
+        .animated-feature-card .card-bg.darkred {
+            background: radial-gradient(circle at 50% 30%, rgba(138, 0, 23, 0.2) 0%, transparent 70%);
+        }
+        .animated-feature-card .card-bg.silver {
+            background: radial-gradient(circle at 50% 30%, rgba(192, 192, 192, 0.25) 0%, transparent 70%);
+        }
+        .animated-feature-card .card-index {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-600);
+            z-index: 5;
+        }
+        .animated-feature-card .card-image {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .animated-feature-card .card-image img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .animated-feature-card:hover .card-image img {
+            transform: scale(1.15) translateY(-15px);
+        }
+        .animated-feature-card .card-content {
+            position: relative;
+            z-index: 10;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 1rem;
+        }
+        .animated-feature-card .card-tag {
+            display: inline-block;
+            border-radius: 50px;
+            padding: 0.35rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .animated-feature-card.red .card-tag {
+            background: rgba(184, 0, 31, 0.08);
+            color: var(--accent);
+        }
+        .animated-feature-card.darkred .card-tag {
+            background: rgba(138, 0, 23, 0.1);
+            color: var(--accent-dark);
+        }
+        .animated-feature-card.silver .card-tag {
+            background: rgba(192, 192, 192, 0.2);
+            color: var(--gray-800);
+        }
+        .animated-feature-card .card-title {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(184, 0, 31, 0.1), rgba(192, 192, 192, 0.15));
+            border: 1px solid rgba(184, 0, 31, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        .service-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .service-features { list-style: none; }
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            padding: 0.35rem 0;
+        }
+        .service-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* FLEET */
+        .fleet { padding: 6rem 2rem; background: var(--white); }
+        .fleet-gallery {
+            display: flex;
+            gap: 0.6rem;
+            height: 420px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .fleet-tile {
+            position: relative;
+            flex: 1;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 14px;
+            background: var(--gray-200);
+            transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fleet-tile:hover { flex: 2.4; }
+        .fleet-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .fleet-tile:hover img { transform: scale(1.06); }
+        .fleet-tile-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.85) 0%, rgba(26, 26, 46, 0.25) 50%, transparent 100%);
+            opacity: 0.85;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: var(--white);
+        }
+        .fleet-tile:hover .fleet-tile-overlay { opacity: 1; }
+        .fleet-tile-overlay h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            transform: translateY(8px);
+            opacity: 0;
+            transition: transform 0.4s ease 0.1s, opacity 0.4s ease 0.1s;
+        }
+        .fleet-tile-overlay p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            transform: translateY(8px);
+            opacity: 0;
+            transition: transform 0.4s ease 0.2s, opacity 0.4s ease 0.2s;
+        }
+        .fleet-tile:hover .fleet-tile-overlay h4,
+        .fleet-tile:hover .fleet-tile-overlay p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .fleet-tile-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            padding: 0.25rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            backdrop-filter: blur(8px);
+        }
+        .fleet-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fleet-fade-in 0.3s ease;
+        }
+        .fleet-modal.open { display: flex; }
+        @keyframes fleet-fade-in { from { opacity: 0; } to { opacity: 1; } }
+        .fleet-modal img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .fleet-modal-close,
+        .fleet-modal-nav {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            backdrop-filter: blur(10px);
+        }
+        .fleet-modal-close:hover,
+        .fleet-modal-nav:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.05); }
+        .fleet-modal-close { top: 2rem; right: 2rem; }
+        .fleet-modal-nav.prev { left: 2rem; top: 50%; transform: translateY(-50%); }
+        .fleet-modal-nav.next { right: 2rem; top: 50%; transform: translateY(-50%); }
+        .fleet-modal-counter {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        .fleet-modal-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem 4.5rem;
+            text-align: center;
+            color: var(--white);
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            pointer-events: none;
+        }
+        .fleet-modal-caption h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.35rem; }
+        .fleet-modal-caption p { font-size: 0.9rem; opacity: 0.85; }
+
+        /* DIFFERENTIALS */
+        .differentials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .differentials .section-title { color: var(--white); }
+        .differentials .section-subtitle { color: var(--gray-300); }
+
+        /* Section With Mockup layout */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1220px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+        }
+        .about-text {
+            max-width: 546px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .about-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .about-text .about-tag {
+            display: inline-block;
+            background: rgba(184, 0, 31, 0.18);
+            color: var(--accent-light);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            font-family: monospace;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            line-height: 1.15;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .about-text h2 span.highlight {
+            color: var(--accent-light);
+        }
+        .about-text p {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+        .about-text .about-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.85rem 1.75rem;
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: var(--white);
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+        .about-text .about-cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .about-text .about-cta:hover::before { transform: translateX(100%); }
+        .about-text .about-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(37, 211, 102, 0.55);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .about-text .about-cta:active { transform: scale(0.97); }
+        .about-text .about-cta > * { position: relative; z-index: 2; }
+        .about-mockup {
+            position: relative;
+            width: 100%;
+            max-width: 471px;
+            height: 520px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.9s ease-out;
+        }
+        .about-mockup.visible { opacity: 1; }
+        .about-mockup-back {
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 90%;
+            height: 90%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 32px;
+            filter: blur(2px);
+            opacity: 0.6;
+            transform: translateY(10%);
+            transition: transform 1.2s ease-out;
+        }
+        .about-mockup.visible .about-mockup-back {
+            transform: translateY(-30px);
+        }
+        .about-mockup-front {
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 32px;
+            background-color: #ffffff0a;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+            transform: translateY(0);
+            transition: transform 1.2s ease-out 0.1s;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        .about-mockup.visible .about-mockup-front {
+            transform: translateY(30px);
+        }
+        .about-mockup-front::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(184, 0, 31, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+        .about-mockup-stats {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            z-index: 20;
+        }
+        .about-stat {
+            text-align: center;
+            flex: 1;
+        }
+        .about-stat-num {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            line-height: 1;
+        }
+        .about-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.35rem;
+        }
+        .about-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        /* CTA */
+        .cta { padding: 6rem 2rem; background: var(--gray-100); }
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        .cta-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .cta-container p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .cta .btn-primary {
+            background: var(--white);
+            color: var(--whatsapp-dark);
+            border-color: var(--whatsapp);
+        }
+        .cta .btn-primary::before {
+            background: linear-gradient(110deg, transparent 30%, rgba(18, 140, 94, 0.15) 50%, transparent 70%);
+        }
+        .cta .btn-primary:hover {
+            background: var(--whatsapp);
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* CONTACT */
+        .contact { padding: 6rem 2rem; background: var(--white); color: var(--primary); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .contact-info > p { color: var(--gray-600); margin-bottom: 2rem; }
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .contact-method { display: flex; align-items: center; gap: 1rem; }
+        .contact-method-icon {
+            width: 56px;
+            height: 56px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1f2937;
+            flex-shrink: 0;
+        }
+        .contact-method-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        .contact-method h4 {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        .contact-method p {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .contact-method a { color: var(--primary); text-decoration: none; }
+        .contact-method a:hover { color: var(--accent); }
+        .contact-form {
+            background: linear-gradient(135deg, var(--primary), #0a1428);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            color: var(--white);
+            box-shadow: 0 20px 50px rgba(10, 25, 50, 0.25);
+        }
+        .contact-form h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--white);
+        }
+        .contact-form .form-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-300);
+            margin-bottom: 1.5rem;
+        }
+        .form-group-hero { margin-bottom: 0.9rem; }
+        .form-group-hero label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-300);
+            margin-bottom: 0.4rem;
+        }
+        .form-group-hero input,
+        .form-group-hero select,
+        .form-group-hero textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .form-group-hero input::placeholder,
+        .form-group-hero textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .form-group-hero input:focus,
+        .form-group-hero select:focus,
+        .form-group-hero textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .form-group-hero select option {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .form-group-hero textarea { min-height: 100px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-submit-hero {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+        .form-submit-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.9s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .form-submit-hero:hover::before { transform: translateX(100%); }
+        .form-submit-hero:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(37, 211, 102, 0.55);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .form-submit-hero:active { transform: scale(0.97); }
+        .form-submit-hero > * { position: relative; z-index: 2; }
+
+        /* FOOTER */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-brand img { height: 50px; }
+        .footer-brand p {
+            color: var(--gray-300);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom p {
+            color: var(--gray-300);
+            font-size: 0.9rem;
+        }
+        .footer-legal { display: flex; gap: 2rem; }
+        .footer-legal a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-legal a:hover { color: var(--accent); }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+        }
+
+        /* DIGITAL SERENITY EFFECTS */
+        #mouse-gradient-react {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 9999px;
+            background-image: radial-gradient(circle, rgba(184, 0, 31, 0.08), rgba(192, 192, 192, 0.06), transparent 70%);
+            transform: translate(-50%, -50%);
+            will-change: left, top, opacity;
+            transition: left 70ms linear, top 70ms linear, opacity 300ms ease-out;
+            z-index: 5;
+        }
+        @keyframes ds-word-appear { 0% { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(10px); } 50% { opacity: 0.8; transform: translateY(10px) scale(0.95); filter: blur(2px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+        @keyframes ds-grid-draw { 0% { stroke-dashoffset: 1000; opacity: 0; } 50% { opacity: 0.3; } 100% { stroke-dashoffset: 0; opacity: 0.18; } }
+        @keyframes ds-pulse-glow { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.1); } }
+        @keyframes ds-float { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; } 25% { transform: translateY(-10px) translateX(5px); opacity: 0.7; } 50% { transform: translateY(-5px) translateX(-3px); opacity: 0.5; } 75% { transform: translateY(-15px) translateX(7px); opacity: 0.9; } }
+        @keyframes ds-underline-grow { to { width: 100%; } }
+        .ds-word-animate { display: inline-block; opacity: 0; margin: 0 0.1em; transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; }
+        .ds-word-animate:hover { color: var(--silver-light); transform: translateY(-2px); text-shadow: 0 0 20px rgba(232, 232, 232, 0.5); }
+        .ds-grid-line { stroke: rgba(192, 192, 192, 0.4); stroke-width: 0.5; opacity: 0; stroke-dasharray: 5 5; stroke-dashoffset: 1000; animation: ds-grid-draw 2s ease-out forwards; }
+        .ds-detail-dot { fill: rgba(232, 232, 232, 0.7); opacity: 0; animation: ds-pulse-glow 3s ease-in-out infinite; }
+        .ds-corner-element { position: absolute; width: 40px; height: 40px; border: 1px solid rgba(232, 232, 232, 0.25); opacity: 0; animation: ds-word-appear 1s ease-out forwards; }
+        .ds-text-decoration { position: relative; }
+        .ds-text-decoration::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: linear-gradient(90deg, transparent, #e8e8e8, transparent); animation: ds-underline-grow 2s ease-out forwards; animation-delay: 2s; }
+        .ds-floating-element { position: absolute; width: 3px; height: 3px; background: rgba(232, 232, 232, 0.7); border-radius: 50%; opacity: 0; animation: ds-float 4s ease-in-out infinite; animation-play-state: paused; box-shadow: 0 0 8px rgba(232, 232, 232, 0.5); }
+        .ds-ripple { position: fixed; width: 6px; height: 6px; background: rgba(184, 0, 31, 0.7); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; animation: ds-pulse-glow 1s ease-out forwards; z-index: 9999; box-shadow: 0 0 15px rgba(184, 0, 31, 0.6); }
+        .ds-svg-bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #25D366;
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+        }
+        .whatsapp-float a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+        .whatsapp-float span { display: none; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding-top: 2rem;
+                padding-bottom: 3rem;
+            }
+            .hero-text { text-align: center; }
+            .hero-text p { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-stat { padding: 0 1rem; }
+            .hero-stat-num { font-size: 1.3rem; }
+            .hero-eyebrow { margin-bottom: 1.5rem; }
+            .hero-form-wrapper { max-width: 500px; margin: 0 auto; }
+            .feature-carousel { flex-direction: column; min-height: auto; }
+            .carousel-features-panel { width: 100%; min-height: 420px; padding: 2rem 1rem 0; position: relative; z-index: 1; }
+            .carousel-cards-panel { padding: 0 1rem 2rem; margin-top: -60px; position: relative; z-index: 2; background: transparent; }
+            .cards-stack { max-width: 320px; aspect-ratio: 4/5; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2); border-radius: 2rem; }
+            .carousel-features-title { text-align: center; margin-bottom: 1.25rem; }
+            .carousel-features-title h3 { font-size: 1.5rem; margin-bottom: 0.1rem; }
+            .features-list { height: 320px; align-items: center; }
+            .feature-chip { left: 50%; transform: translateX(-50%); font-size: 0.78rem; padding: 0.65rem 1.25rem; }
+            .feature-chip.active { transform: translateX(-50%) scale(1.05); }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .animated-features-grid { grid-template-columns: repeat(2, 1fr); }
+            .fleet-gallery { height: 320px; gap: 0.4rem; }
+            .fleet-tile-overlay h4 { font-size: 1rem; }
+            .fleet-tile-overlay p { font-size: 0.75rem; }
+            .about-mockup { height: 380px; max-width: 100%; }
+            .about-mockup-front { left: 5%; width: 90%; }
+            .about-mockup-back { left: -5%; width: 90%; }
+            .about-text h2 { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-container { justify-content: center; position: relative; }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .logo-link { justify-content: center; }
+            .hero-text h1 { font-size: 2.8rem; letter-spacing: -0.02em; }
+            .hero-stats { flex-direction: row; gap: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; margin-top: 2rem; justify-content: space-between; align-items: flex-start; }
+            .hero-stat { padding: 0 0.4rem; border-right: 1px solid rgba(255, 255, 255, 0.12) !important; border-bottom: none !important; width: auto; text-align: center; flex: 1; min-width: 0; }
+            .hero-stat:last-child { border-right: none !important; }
+            .hero-stat-num { font-size: 1.1rem; letter-spacing: -0.02em; }
+            .hero-stat-label { font-size: 0.65rem; line-height: 1.2; }
+            .section-title { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .animated-features-grid { grid-template-columns: 1fr; }
+            .fleet-gallery { height: auto; flex-direction: column; gap: 1rem; padding: 0 1rem; }
+            .fleet-tile { flex: 1; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden; position: relative; }
+            .fleet-tile .fleet-tile-overlay { opacity: 1; background: linear-gradient(to top, rgba(26, 26, 46, 0.9) 0%, rgba(26, 26, 46, 0.3) 60%, transparent 100%); }
+            .fleet-tile .fleet-tile-overlay h4 { transform: none; opacity: 1; font-size: 1.1rem; }
+            .fleet-tile .fleet-tile-overlay p { transform: none; opacity: 1; font-size: 0.85rem; }
+            .fleet-tile:hover { flex: 1; }
+            .about-mockup { height: 320px; }
+            .about-mockup-stats { bottom: 1rem; left: 50%; right: auto; transform: translateX(-50%); width: auto; padding: 0.5rem 0.9rem; gap: 0.75rem; border-radius: 12px; }
+            .about-stat-num { font-size: 0.95rem; }
+            .about-stat-label { font-size: 0.55rem; }
+            .cta-container { padding: 3rem 1.5rem; }
+            .cta-container h2 { font-size: 1.8rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .whatsapp-float span { display: inline; }
+            .trust-bar { padding: 2rem 0; }
+            .trust-header h3 { font-size: 1.3rem; }
+            .trust-item { min-width: 240px; padding: 1rem 1.25rem; }
+            .trust-carousel-track { gap: 2rem; animation-duration: 22s; }
+            .trust-carousel-fade { width: 40px; }
+            /* Hero form full width on mobile */
+            .hero-form-wrapper { width: 100%; max-width: 100%; }
+            .hero-form { padding: 1.75rem 1.5rem; }
+            /* Reduce gap between title and feature list in feature carousel mobile */
+            .carousel-features-title { margin-bottom: 1.25rem; }
+            .carousel-features-title h3 { font-size: 1.4rem; }
+            .features-list { height: 280px; }
+        }
+        @media (max-width: 480px) {
+            .hero-form { padding: 1.5rem 1.25rem; }
+            .hero-form h3 { font-size: 1.15rem; }
+            .form-group-hero input,
+            .form-group-hero select { font-size: 0.9rem; padding: 0.85rem 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-link">
+                <img src="logo_invertida.png" alt="AutoVans" class="logo-img" onerror="this.src='https://www.autovanstransportes.com.br/assets/img/logo_invertida.png'; this.onerror=null;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#carousel">Serviços</a></li>
+                <li><a href="#frota">Frota</a></li>
+                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="https://wa.me/5531986850382?text=Olá!%20Gostaria%20de%20um%20orçamento." class="nav-cta">Orçamento</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-eyebrow">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
+                    </svg>
+                    Há mais de 24 anos no mercado
+                </div>
+                <h1>Transporte Executivo com <span>Conforto e Segurança</span></h1>
+                <p>Segurança, pontualidade e excelência em Belo Horizonte e região.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5531986850382?text=Olá!%20Gostaria%20de%20um%20orçamento." class="btn btn-primary">WhatsApp Agora →</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">24+</span>
+                        <span class="hero-stat-label">Anos de mercado</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">24/7</span>
+                        <span class="hero-stat-label">Atendimento</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">100%</span>
+                        <span class="hero-stat-label">Compromisso</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-form-wrapper">
+                <form class="hero-form" id="heroForm">
+                    <h3>Solicite seu Orçamento</h3>
+                    <p class="form-subtitle">Resposta rápida pelo WhatsApp</p>
+                    <div class="form-group-hero">
+                        <label for="hero-name">Nome</label>
+                        <input type="text" id="hero-name" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group-hero">
+                        <label for="hero-phone">Telefone</label>
+                        <input type="tel" id="hero-phone" placeholder="(31) 99999-9999" required>
+                    </div>
+                    <div class="form-group-hero">
+                        <label for="hero-service">Serviço desejado</label>
+                        <select id="hero-service" required>
+                            <option value="">Selecione...</option>
+                            <option value="traslado">Traslado Aeroporto</option>
+                            <option value="executivo">Transporte Executivo</option>
+                            <option value="casamento">Casamento / Evento</option>
+                            <option value="receptivo">Receptivo de Evento</option>
+                            <option value="excursao">Excursão / City Tour</option>
+                            <option value="viagem">Viagem Nacional</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group-hero">
+                        <label for="hero-date">Data do serviço</label>
+                        <input type="date" id="hero-date" required>
+                    </div>
+                    <button type="submit" class="form-submit-hero">Enviar pelo WhatsApp →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURE CAROUSEL SECTION -->
+    <section class="carousel-section" id="carousel">
+        <div class="carousel-container">
+            <div class="carousel-header">
+                <span class="section-tag">Nossos Serviços</span>
+                <h2 class="section-title">Soluções Completas em Transporte</h2>
+                <p class="section-subtitle">Conheça todos os serviços que oferecemos com a qualidade AutoVans.</p>
+            </div>
+            <div class="feature-carousel">
+                <div class="carousel-features-panel">
+                    <div class="carousel-fade-top"></div>
+                    <div class="carousel-fade-bottom"></div>
+                    <div class="carousel-features-title">
+                        <h3>AutoVans</h3>
+                        <p>Nossos Serviços</p>
+                    </div>
+                    <div class="features-list" id="featuresList"></div>
+                </div>
+                <div class="carousel-cards-panel">
+                    <div class="cards-stack" id="cardsStack"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="trust-bar">
+        <div class="trust-header">
+            <span class="section-tag">Nossos Diferenciais</span>
+            <h3>Por que escolher a AutoVans</h3>
+        </div>
+        <div class="trust-carousel-wrapper">
+            <div class="trust-carousel-fade trust-carousel-fade-left"></div>
+            <div class="trust-carousel-fade trust-carousel-fade-right"></div>
+            <div class="trust-carousel-viewport">
+                <div class="trust-carousel-track" id="trustTrack">
+                    <!-- Original set -->
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Segurança Total</h4>
+                            <p>Frota revisada e veículos blindados disponíveis</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Motoristas Profissionais</h4>
+                            <p>Equipe capacitada e bilíngue</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Pontualidade</h4>
+                            <p>Compromisso com horários marcados</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Conforto Premium</h4>
+                            <p>Bancadas reclináveis e ar-condicionado</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Atendimento 24h</h4>
+                            <p>Disponibilidade total, todos os dias da semana</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Frota Moderna</h4>
+                            <p>Veículos novos e revisados periodicamente</p>
+                        </div>
+                    </div>
+                    <!-- Duplicate set for seamless infinite scroll -->
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Segurança Total</h4>
+                            <p>Frota revisada e veículos blindados disponíveis</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Motoristas Profissionais</h4>
+                            <p>Equipe capacitada e bilíngue</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Pontualidade</h4>
+                            <p>Compromisso com horários marcados</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Conforto Premium</h4>
+                            <p>Bancadas reclináveis e ar-condicionado</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Atendimento 24h</h4>
+                            <p>Disponibilidade total, todos os dias da semana</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-text">
+                            <h4>Frota Moderna</h4>
+                            <p>Veículos novos e revisados periodicamente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="servicos">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Serviços Detalhados</span>
+                <h2 class="section-title">Para Cada Necessidade</h2>
+                <p class="section-subtitle">Conheça todas as soluções que oferecemos com a qualidade AutoVans.</p>
+            </div>
+            <div class="animated-features-grid">
+                <div class="animated-feature-card red">
+                    <div class="card-bg red"></div>
+                    <div class="card-index">001</div>
+                    <div class="card-image">
+                        <img src="traslado_aeroporto.jpg" alt="Traslado Aeroporto">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Traslado Aeroporto</span>
+                        <p class="card-title">BH ↔ Confins com pontualidade garantida e conforto premium.</p>
+                    </div>
+                </div>
+                <div class="animated-feature-card darkred">
+                    <div class="card-bg darkred"></div>
+                    <div class="card-index">002</div>
+                    <div class="card-image">
+                        <img src="executivo.jpg" alt="Transporte Executivo">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Executivo</span>
+                        <p class="card-title">Reuniões e compromissos com discrição e profissionalismo.</p>
+                    </div>
+                </div>
+                <div class="animated-feature-card silver">
+                    <div class="card-bg silver"></div>
+                    <div class="card-index">003</div>
+                    <div class="card-image">
+                        <img src="Corolla.jpg" alt="Casamentos">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Casamentos</span>
+                        <p class="card-title">Transporte especial para seu grande dia inesquecível.</p>
+                    </div>
+                </div>
+                <div class="animated-feature-card darkred">
+                    <div class="card-bg darkred"></div>
+                    <div class="card-index">004</div>
+                    <div class="card-image">
+                        <img src="receptivo_eventos.jpg" alt="Receptivo">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Receptivo</span>
+                        <p class="card-title">Embarque e desembarque organizado para eventos.</p>
+                    </div>
+                </div>
+                <div class="animated-feature-card red">
+                    <div class="card-bg red"></div>
+                    <div class="card-index">005</div>
+                    <div class="card-image">
+                        <img src="Vans.jpg" alt="Excursões">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Excursões</span>
+                        <p class="card-title">Roteiros personalizados por BH e região.</p>
+                    </div>
+                </div>
+                <div class="animated-feature-card silver">
+                    <div class="card-bg silver"></div>
+                    <div class="card-index">006</div>
+                    <div class="card-image">
+                        <img src="viagens_nacionais.jpg" alt="Viagens Nacionais">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Viagens Nacionais</span>
+                        <p class="card-title">Para qualquer destino do território nacional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLEET -->
+    <section class="fleet" id="frota">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Nossa Frota</span>
+                <h2 class="section-title">Veículos para Toda Ocasião</h2>
+                <p class="section-subtitle">Frota diversificada para atender desde grupos pequenos até grandes eventos. Passe o mouse para expandir.</p>
+            </div>
+            <div class="fleet-gallery" id="fleetGallery">
+                <div class="fleet-tile" data-index="0">
+                    <img src="Sportage.jpg" alt="Carros Executivos">
+                    <div class="fleet-tile-overlay">
+                        <h4>Carros Executivos</h4>
+                        <p>Até 4 passageiros • Sedan premium</p>
+                    </div>
+                    <span class="fleet-tile-counter">01</span>
+                </div>
+                <div class="fleet-tile" data-index="4">
+                    <img src="Dodge.jpg" alt="Frota Blindada">
+                    <div class="fleet-tile-overlay">
+                        <h4>Frota Blindada</h4>
+                        <p>Segurança máxima executiva</p>
+                    </div>
+                    <span class="fleet-tile-counter">02</span>
+                </div>
+                <div class="fleet-tile" data-index="1">
+                    <img src="vans14.jpg" alt="Vans 14 Lugares">
+                    <div class="fleet-tile-overlay">
+                        <h4>Vans 14 Lugares</h4>
+                        <p>Ideal para grupos pequenos</p>
+                    </div>
+                    <span class="fleet-tile-counter">03</span>
+                </div>
+                <div class="fleet-tile" data-index="2">
+                    <img src="Vans.jpg" alt="Vans 15 Lugares">
+                    <div class="fleet-tile-overlay">
+                        <h4>Vans 15 Lugares</h4>
+                        <p>Conforto e espaço ampliado</p>
+                    </div>
+                    <span class="fleet-tile-counter">04</span>
+                </div>
+                <div class="fleet-tile" data-index="3">
+                    <img src="receptivo_eventos.jpg" alt="Vans 20 Lugares">
+                    <div class="fleet-tile-overlay">
+                        <h4>Vans 20 Lugares</h4>
+                        <p>Para grupos grandes e eventos</p>
+                    </div>
+                    <span class="fleet-tile-counter">05</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de visualização expandida -->
+        <div class="fleet-modal" id="fleetModal">
+            <button class="fleet-modal-close" id="fleetModalClose" aria-label="Fechar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <button class="fleet-modal-nav prev" id="fleetModalPrev" aria-label="Anterior">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <img id="fleetModalImg" src="" alt="Imagem expandida">
+            <button class="fleet-modal-nav next" id="fleetModalNext" aria-label="Próximo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+            <div class="fleet-modal-counter" id="fleetModalCounter">1 / 5</div>
+            <div class="fleet-modal-caption" id="fleetModalCaption">
+                <h4 id="fleetModalTitle"></h4>
+                <p id="fleetModalDesc"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFFERENTIALS -->
+    <section class="differentials" id="diferenciais">
+        <!-- Floating Particles -->
+        <div class="ds-floating-element" style="top: 25%; left: 15%; animation-delay: 0.5s"></div>
+        <div class="ds-floating-element" style="top: 60%; left: 85%; animation-delay: 1s"></div>
+        <div class="ds-floating-element" style="top: 40%; left: 10%; animation-delay: 1.5s"></div>
+        <div class="ds-floating-element" style="top: 75%; left: 90%; animation-delay: 2s"></div>
+
+        <div class="section-container" style="position: relative; z-index: 10;">
+            <div class="about-grid">
+                <div class="about-text" data-animate="fade-up">
+                    <span class="about-tag">Sobre Nós</span>
+                    <h2>Referência em transporte executivo desde <span class="highlight">2000</span></h2>
+                    <p>Há mais de duas décadas no mercado, a AutoVans reformulou o conceito de qualidade, conforto, pontualidade e disponibilidade no segmento de transporte executivo em Belo Horizonte.</p>
+                    <p>Com visão ampla e o compromisso de atender da melhor forma possível, não medimos esforços. Estamos disponíveis <strong>24 horas, 7 dias por semana</strong>, suprindo a demanda de qualquer cliente sem comprometer a qualidade dos nossos serviços.</p>
+                    <p>Investimos continuamente em tecnologia para estar sempre à frente das expectativas, criando e inovando nos produtos oferecidos. Nossos profissionais capacitados garantem a excelência em cada viagem.</p>
+                    <a href="#contato" class="about-cta">Conheça nossa frota →</a>
+                </div>
+
+                <div class="about-mockup" data-animate="fade-in">
+                    <div class="about-mockup-back" style="background-image: url('referencia.jpg');"></div>
+                    <div class="about-mockup-front" style="background-image: url('referencia.jpg');">
+                        <div class="about-mockup-stats">
+                            <div class="about-stat">
+                                <span class="about-stat-num">24+</span>
+                                <span class="about-stat-label">Anos</span>
+                            </div>
+                            <div class="about-stat">
+                                <span class="about-stat-num">24/7</span>
+                                <span class="about-stat-label">Disponível</span>
+                            </div>
+                            <div class="about-stat">
+                                <span class="about-stat-num">100%</span>
+                                <span class="about-stat-label">Compromisso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-decoration"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Solicite seu Orçamento</h2>
+            <p>Entre em contato agora mesmo e receba uma proposta personalizada para sua necessidade.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/5531986850382?text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20transporte." class="btn btn-primary">💬 WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contato">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Entre em Contato</h3>
+                    <p>Estamos prontos para atender você. Solicite um orçamento sem compromisso.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Telefone</h4>
+                                <p><a href="tel:+553186850382">(31) 8685-0382</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p><a href="https://wa.me/5531986850382">(31) 9868-50382</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>E-mail</h4>
+                                <p><a href="mailto:autovanstransportes@gmail.com">autovanstransportes@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Endereço</h4>
+                                <p>Rua Bernardes de Carvalho, 39<br>Santa Terezinha, Belo Horizonte/MG</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie sua Mensagem</h3>
+                    <p class="form-subtitle">Resposta rápida pelo WhatsApp</p>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group-hero">
+                                <label for="name">Nome completo</label>
+                                <input type="text" id="name" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group-hero">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" placeholder="(31) 99999-9999" required>
+                            </div>
+                        </div>
+                        <div class="form-group-hero">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group-hero">
+                            <label for="service">Serviço desejado</label>
+                            <select id="service" required>
+                                <option value="">Selecione um serviço</option>
+                                <option value="traslado">Traslado Aeroporto</option>
+                                <option value="executivo">Transporte Executivo</option>
+                                <option value="casamento">Casamento / Evento</option>
+                                <option value="receptivo">Receptivo de Evento</option>
+                                <option value="excursao">Excursão / City Tour</option>
+                                <option value="viagem">Viagem Nacional</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group-hero">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" placeholder="Descreva sua necessidade..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit-hero">Enviar pelo WhatsApp →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="https://www.autovanstransportes.com.br/assets/img/logo_invertida.png" alt="AutoVans" onerror="this.style.display='none'">
+                    <p>Transporte executivo com segurança, conforto e pontualidade desde 2000. Atendemos em Belo Horizonte e região com excelência.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/autovansbh/" target="_blank">📷</a>
+                        <a href="https://wa.me/5531986850382">💬</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#carousel">Traslado Aeroporto</a></li>
+                        <li><a href="#carousel">Executivo</a></li>
+                        <li><a href="#carousel">Casamentos</a></li>
+                        <li><a href="#carousel">Excursões</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#diferenciais">Sobre Nós</a></li>
+                        <li><a href="#frota">Nossa Frota</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="tel:+553186850382">(31) 8685-0382</a></li>
+                        <li><a href="https://wa.me/5531986850382">(31) 9868-50382</a></li>
+                        <li><a href="mailto:autovanstransportes@gmail.com">E-mail</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 AutoVans Locação, Transporte e Serviços Eireli. CNPJ: 30.974.871/0001-77</p>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FEATURE CAROUSEL
+        const FEATURES = [
+            { id: "traslado", label: "Traslado Aeroporto", image: "traslado_aeroporto.jpg", description: "BH ↔ Confins com pontualidade garantida e conforto premium." },
+            { id: "executivo", label: "Transporte Executivo", image: "executivo.jpg", description: "Reuniões e compromissos com discrição e profissionalismo." },
+            { id: "casamento", label: "Casamentos & Eventos", image: "Corolla.jpg", description: "Transporte especial para seu grande dia inesquecível." },
+            { id: "receptivo", label: "Receptivo de Eventos", image: "receptivo_eventos.jpg", description: "Embarque e desembarque organizado para eventos corporativos." },
+            { id: "excursao", label: "Excursões & City Tour", image: "Vans.jpg", description: "Roteiros personalizados por BH e região." },
+            { id: "viagem", label: "Viagens Nacionais", image: "viagens_nacionais.jpg", description: "Para qualquer destino do território nacional." },
+            { id: "blindado", label: "Frota Blindada", image: "Dodge.jpg", description: "Segurança máxima para executivos e autoridades." },
+            { id: "motorista", label: "Motorista Feminina", image: "Motorista_Feminina.webp", description: "Opção diferenciada para clientes que preferem." },
+            { id: "24h", label: "Atendimento 24h", image: "atendimento_24h.avif", description: "Disponibilidade total, todos os dias da semana." },
+            { id: "bilíngue", label: "Motoristas Bilíngues", image: "motorista_bilingue.webp", description: "Equipe preparada para clientes internacionais." },
+        ];
+
+        const AUTO_PLAY_INTERVAL = 4000;
+        const ITEM_HEIGHT = 60;
+        let currentIndex = 0;
+        let step = 0;
+        let isPaused = false;
+
+        function wrap(min, max, v) {
+            const rangeSize = max - min;
+            return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+        }
+
+        function nextStep() {
+            step++;
+            currentIndex = ((step % FEATURES.length) + FEATURES.length) % FEATURES.length;
+            render();
+        }
+
+        function handleChipClick(index) {
+            const diff = (index - currentIndex + FEATURES.length) % FEATURES.length;
+            if (diff > 0) {
+                step += diff;
+                currentIndex = ((step % FEATURES.length) + FEATURES.length) % FEATURES.length;
+                render();
+            }
+        }
+
+        function render() {
+            const featuresList = document.getElementById('featuresList');
+            const cardsStack = document.getElementById('cardsStack');
+            featuresList.innerHTML = '';
+            cardsStack.innerHTML = '';
+
+            // Render feature chips - only show close ones
+            FEATURES.forEach((feature, index) => {
+                const isActive = index === currentIndex;
+                const distance = index - currentIndex;
+                const wrappedDistance = wrap(
+                    -(FEATURES.length / 2),
+                    FEATURES.length / 2,
+                    distance
+                );
+
+                // Hide chips that are too far (only show +/- 2 from active)
+                if (Math.abs(wrappedDistance) > 2) return;
+
+                const chip = document.createElement('div');
+                chip.className = `feature-chip ${isActive ? 'active' : 'inactive'}`;
+                chip.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease, background 0.5s ease, color 0.5s ease, border-color 0.5s ease';
+                const isMobile = window.matchMedia('(max-width: 768px)').matches;
+                const xTransform = isMobile ? 'translateX(-50%) ' : '';
+                const activeScale = isMobile ? ' scale(1.05)' : ' scale(1.05)';
+                chip.style.transform = isActive
+                    ? `${xTransform}translateY(0)${activeScale}`
+                    : `${xTransform}translateY(${wrappedDistance * ITEM_HEIGHT}px)`;
+                chip.style.opacity = isActive ? '1' : (1 - Math.abs(wrappedDistance) * 0.25);
+                chip.innerHTML = `
+                    <span class="feature-chip-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </span>
+                    <span>${feature.label}</span>
+                `;
+                chip.addEventListener('mouseenter', () => { isPaused = true; });
+                chip.addEventListener('mouseleave', () => { isPaused = false; });
+                chip.addEventListener('click', () => handleChipClick(index));
+                featuresList.appendChild(chip);
+            });
+
+            // Render cards
+            FEATURES.forEach((feature, index) => {
+                const diff = index - currentIndex;
+                const len = FEATURES.length;
+                let normalizedDiff = diff;
+                if (diff > len / 2) normalizedDiff -= len;
+                if (diff < -len / 2) normalizedDiff += len;
+
+                const isActive = normalizedDiff === 0;
+                const isPrev = normalizedDiff === -1;
+                const isNext = normalizedDiff === 1;
+
+                const card = document.createElement('div');
+                card.className = `feature-card ${isActive ? 'active' : 'dim'}`;
+
+                let transform = '';
+                if (isActive) {
+                    transform = 'translate(0, 0) scale(1) rotate(0deg)';
+                } else if (isPrev) {
+                    transform = 'translate(-90px, 0) scale(0.85) rotate(-3deg)';
+                } else if (isNext) {
+                    transform = 'translate(90px, 0) scale(0.85) rotate(3deg)';
+                } else {
+                    transform = 'translate(0, 0) scale(0.7)';
+                }
+
+                card.style.transform = transform;
+                card.style.opacity = isActive ? '1' : (isPrev || isNext ? '0.5' : '0');
+                card.style.zIndex = isActive ? '20' : (isPrev || isNext ? '10' : '0');
+
+                card.innerHTML = `
+                    <img src="${feature.image}" alt="${feature.label}">
+                    ${isActive ? `
+                        <div class="feature-card-overlay">
+                            <div class="feature-card-badge">${index + 1} • ${feature.label}</div>
+                            <p class="feature-card-desc">${feature.description}</p>
+                        </div>
+                        <div class="feature-card-corner">
+                            <div class="corner-dot"></div>
+                            <span class="corner-text">AutoVans</span>
+                        </div>
+                    ` : ''}
+                `;
+                cardsStack.appendChild(card);
+            });
+        }
+
+        render();
+        setInterval(() => { if (!isPaused) nextStep(); }, AUTO_PLAY_INTERVAL);
+
+        // NAVBAR SCROLL
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // HERO FORM
+        document.getElementById('heroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('hero-name').value;
+            const phone = document.getElementById('hero-phone').value;
+            const service = document.getElementById('hero-service').value;
+            const date = document.getElementById('hero-date').value;
+
+            const message = `Olá! Me chamo ${name}.\n\nTelefone: ${phone}\nServiço: ${service}\nData: ${date}\n\nGostaria de um orçamento.`;
+            window.open(`https://wa.me/5531986850382?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        // CONTACT FORM
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            const whatsappMessage = `Olá! Me chamo ${name}.\n\nServiço: ${service}\n\n${message}`;
+            window.open(`https://wa.me/5531986850382?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+        });
+
+        // FLEET GALLERY MODAL
+        (function() {
+            const gallery = document.getElementById('fleetGallery');
+            const modal = document.getElementById('fleetModal');
+            const modalImg = document.getElementById('fleetModalImg');
+            const modalCounter = document.getElementById('fleetModalCounter');
+            const modalTitle = document.getElementById('fleetModalTitle');
+            const modalDesc = document.getElementById('fleetModalDesc');
+            const btnClose = document.getElementById('fleetModalClose');
+            const btnPrev = document.getElementById('fleetModalPrev');
+            const btnNext = document.getElementById('fleetModalNext');
+
+            if (!gallery || !modal) return;
+
+            const tiles = gallery.querySelectorAll('.fleet-tile');
+            const total = tiles.length;
+            let currentIndex = 0;
+
+            function openModal(index) {
+                currentIndex = index;
+                updateModal();
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            function updateModal() {
+                const tile = tiles[currentIndex];
+                const img = tile.querySelector('img');
+                const h4 = tile.querySelector('h4');
+                const p = tile.querySelector('p');
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                modalCounter.textContent = `${currentIndex + 1} / ${total}`;
+                if (modalTitle) modalTitle.textContent = h4 ? h4.textContent : '';
+                if (modalDesc) modalDesc.textContent = p ? p.textContent : '';
+            }
+
+            function goNext() {
+                currentIndex = (currentIndex + 1) % total;
+                updateModal();
+            }
+
+            function goPrev() {
+                currentIndex = (currentIndex - 1 + total) % total;
+                updateModal();
+            }
+
+            tiles.forEach((tile, index) => {
+                tile.addEventListener('click', () => openModal(index));
+            });
+
+            btnClose.addEventListener('click', closeModal);
+            btnNext.addEventListener('click', goNext);
+            btnPrev.addEventListener('click', goPrev);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('open')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') goNext();
+                if (e.key === 'ArrowLeft') goPrev();
+            });
+        })();
+
+        // ABOUT SECTION ANIMATIONS (IntersectionObserver - replaces Framer Motion)
+        (function() {
+            const targets = document.querySelectorAll('[data-animate]');
+            if (!('IntersectionObserver' in window)) {
+                targets.forEach(el => el.classList.add('visible'));
+                return;
+            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            targets.forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+</html>
